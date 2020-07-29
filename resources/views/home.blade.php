@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="vue-app">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -11,7 +11,7 @@
                     You are logged in!
                 </div>
 
-                <chat-application></chat-application>
+                <todo-add-form></todo-add-form>
             </div>
         </div>
     </div>
