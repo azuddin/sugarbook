@@ -1,6 +1,5 @@
-var elixir = require('laravel-elixir');
+var elixir = require("laravel-elixir");
 
-require('laravel-elixir-vueify');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,7 +11,6 @@ require('laravel-elixir-vueify');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss')
-       .browserify('app.js');
+elixir(function (mix) {
+  mix.sass("app.scss");
 });
