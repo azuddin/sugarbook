@@ -19,7 +19,12 @@
         <div v-show="chatOpen && !loadingMessages">
           <div
             class="row"
-            style="max-height: 50vh; overflow: scroll; padding-bottom: 50px;"
+            style="
+              min-height: 10px;
+              max-height: 50vh;
+              overflow: scroll;
+              padding-bottom: 50px;
+            "
             ref="messageBox"
           >
             <div
