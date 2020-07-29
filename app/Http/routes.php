@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,10 +18,6 @@ Route::get('/', function () {
     
     $users = App\User::all();
     return view('welcome', ['users' => $users]);
-});
-
-Route::get('/login/{user_id}', function () {
-    //
 });
 
 Route::auth();

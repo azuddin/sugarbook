@@ -1,54 +1,44 @@
 import Vue from "vue";
+import Echo from "laravel-echo";
 
-var TodoItems = Vue.extend({
-  template: "#todo-list-template",
+window._ = require("lodash");
+window.Popper = require("popper.js").default;
+window.io = require("socket.io-client");
 
-  props: ["todos"],
-
-  methods: {
-    todoCompleted(todo) {
-      todo.completed = !todo.completed;
-    },
-  },
+// Socket.io
+window.Echo = new Echo({
+  broadcaster: "socket.io",
+  host: window.location.hostname + ":6001",
 });
 
-var TodoAddForm = Vue.extend({
-  template: "#todo-add-form",
+try {
+  window.$ = window.jQuery = require("jquery");
 
-  props: ["newtodo"],
+  require("bootstrap");
+} catch (e) {}
 
-  data() {
-    return {
-      todo: { id: null, title: "", completed: false },
-    };
-  },
+window.axios = require("axios");
 
-  methods: {
-    addTodo() {
-      this.newtodo = this.todo;
-      this.todo = { id: null, title: "", completed: false };
-    },
-  },
-});
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-Vue.component("todo-item", TodoItems);
-Vue.component("todo-add-form", TodoAddForm);
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
+} else {
+  console.error(
+    "CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token"
+  );
+}
+
+Vue.component("chat-component", require("./components/Chat.vue"));
 
 new Vue({
-  el: "#vue-app",
-
+  el: "#app-layout",
   data: {
-    todos: [{ id: 1, title: "Go Shopping", completed: true }],
-    newTodo: {},
+    userID: null,
   },
-
-  watch: {
-    newTodo(newval, oldval) {
-      this.todos.push({
-        id: Math.floor(Date.now()),
-        title: newval.title,
-        completed: false,
-      });
-    },
+  mounted() {
+    this.userID = document.head.querySelector('meta[name="userID"]').content;
   },
 });
