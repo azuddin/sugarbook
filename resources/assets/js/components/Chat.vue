@@ -16,7 +16,7 @@
         </ul>
       </div>
       <div class="col-md-8">
-        <div v-show="chatOpen && !loadingMessages">
+        <div v-show="true">
           <div
             class="row"
             style="
@@ -89,9 +89,8 @@ export default {
   },
   watch: {
     messages: function () {
-      let element = this.$refs.messageBox;
-      console.log(element);
-      element.scrollTop = element.$el.querySelector("div").scrollHeight;
+      // let element = this.$refs.messageBox;
+      // element.scrollTop = element.scrollHeight;
     },
   },
   methods: {
