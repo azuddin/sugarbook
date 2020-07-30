@@ -55914,7 +55914,7 @@ exports.default = {
     messages: function messages() {
       var element = this.$refs.messageBox;
       console.log(element);
-      element.scrollTop = element.scrollHeight;
+      element.scrollTop = element.$el.querySelector("div").scrollHeight;
     }
   },
   methods: {
