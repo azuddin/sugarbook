@@ -33,9 +33,7 @@
               :class="{ 'text-right': message.sender_id !== chatUserID }"
               :key="message.id"
             >
-              <small
-                >{{ message.sender.name }} at {{ message.created_at }}</small
-              >
+              <small>{{ message.sender.name }} at {{ message.created_at }}</small>
               <p>{{ message.message }}</p>
             </div>
           </div>
@@ -56,9 +54,7 @@
                     type="button"
                     id="button-addon2"
                     @click="sendMessage"
-                  >
-                    Send message
-                  </button>
+                  >Send message</button>
                 </div>
               </div>
             </div>
@@ -68,9 +64,7 @@
           <p>Loading messages... Please wait</p>
         </div>
         <div v-show="!chatOpen && !loadingMessages">
-          <p>
-            No chat room is open. Please click on user to start a conversation
-          </p>
+          <p>No chat room is open. Please click on user to start a conversation</p>
         </div>
       </div>
     </div>
@@ -97,6 +91,7 @@ export default {
   watch: {
     messages: function () {
       let element = this.$refs.messageBox;
+      console.log(element);
       element.scrollTop = element.scrollHeight;
     },
   },
