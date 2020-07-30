@@ -92,7 +92,7 @@ export default {
     messages: function () {
       let element = this.$refs.messageBox;
       console.log(element);
-      element.scrollTop = element.scrollHeight;
+      element.scrollTop = element.$el.querySelector("div").scrollHeight;
     },
   },
   methods: {
