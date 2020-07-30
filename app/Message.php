@@ -16,12 +16,12 @@ class Message extends Model
 
     public function scopeBySender($q, $sender)
     {
-        $q->where('sender_id', $sender);
+        return $q->where('sender_id', $sender);
     }
 
     public function scopeByReceiver($q, $sender)
     {
-        $q->where('receiver_id', $sender);
+        return $q->where('receiver_id', $sender);
     }
 
     public function sender()

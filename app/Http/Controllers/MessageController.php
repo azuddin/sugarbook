@@ -10,18 +10,15 @@ class MessageController extends Controller
 {
     public function index()
     {
-        return auth()
+        $user_id = auth()->user()->id;
+        $message = auth()
             ->user()
             ->messages()
-            ->where(function ($query) {
-                $query->bySender(request()->input('sender_id'))
-                    ->byReceiver(auth()->user()->id);
-            })
-            ->orWhere(function ($query) {
-                $query->bySender(auth()->user()->id)
-                    ->byReceiver(request()->input('sender_id'));
-            })
+            ->where('sender_id', $user_id)
+            ->orWhere('receiver_id', $user_id)
             ->get();
+
+        return $message;
     }
 
     public function store(Request $request)
