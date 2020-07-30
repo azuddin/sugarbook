@@ -20,7 +20,6 @@
           <div
             class="row"
             style="
-              min-height: 10px;
               max-height: 50vh;
               overflow: scroll;
               padding-bottom: 50px;

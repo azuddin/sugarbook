@@ -10,22 +10,26 @@ class MessageController extends Controller
 {
     public function index()
     {
-        return auth()->user()->messages()
+        return auth()
+            ->user()
+            ->messages()
             ->where(function ($query) {
                 $query->bySender(request()->input('sender_id'))
                     ->byReceiver(auth()->user()->id);
-            })->orWhere(function ($query) {
+            })
+            ->orWhere(function ($query) {
                 $query->bySender(auth()->user()->id)
                     ->byReceiver(request()->input('sender_id'));
-            })->get();
+            })
+            ->get();
     }
 
     public function store(Request $request)
     {
-        $message = App\Message::create([
-            'sender_id' => $request->input('sender_id'),
+        $message = Message::create([
+            'sender_id'   => $request->input('sender_id'),
             'receiver_id' => $request->input('receiver_id'),
-            'message' => $request->input('message')
+            'message'     => $request->input('message'),
         ]);
 
         broadcast(new MessageSent($message));
